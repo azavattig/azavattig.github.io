@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DealNexa Diligence Engine · Alessandro Zavatti</title>
+  <meta name="description" content="Case study and interactive demo: an AI due-diligence engine for buy-side M&amp;A teams, running in demo mode on a fictional sample data room.">
+  <link rel="canonical" href="https://azavattig.github.io/dealnexa.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Alessandro Zavatti">
+  <meta property="og:title" content="DealNexa due-diligence app · live demo">
+  <meta property="og:description" content="The real DealNexa app in your browser: a sample data room with 17 documents, 14 risk flags, a live risk score and LBO.">
+  <meta property="og:url" content="https://azavattig.github.io/dealnexa.html">
+  <meta property="og:image" content="https://azavattig.github.io/assets/og/og-dealnexa.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="DealNexa due-diligence app demo">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%237a1a2c%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2232%22 text-anchor=%22middle%22 fill=%22white%22%3Eaz.%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=36">
+</head>
+<body class="page-experience page-pavind page-dealnexa">
+  <main>
+    <header class="topbar">
+      <a class="logo" href="index.html">az.</a>
+      <div class="hero__nav">
+        <button class="pill pill--soft menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">menu.</button>
+        <a class="pill pill--wine" href="mailto:azavattig@gmail.com" data-pet-say="say hi!">get in touch.</a>
+      </div>
+    </header>
+
+    <p class="pv-eyebrow">Deal software · DealNexa · Miami, FL (remote) · 2025–2026</p>
+    <h1 class="page-title">DealNexa</h1>
+
+    <section class="pv-story" aria-label="Case study">
+      <article class="pv-card">
+        <h2>The problem</h2>
+        <p>Buy-side deal teams spend weeks reading a seller's data room: financial statements, contracts, rosters, leases, legal files. The risks that matter are often spread across several documents that contradict each other, and they surface late, after the price is set.</p>
+      </article>
+      <article class="pv-card">
+        <h2>What I built</h2>
+        <p>DealNexa is a deal-management platform for private equity and venture capital teams. I co-founded it and built its due-diligence engine: it parses the data room, runs Claude over the documents in batches to extract and rank risks, writes the diligence report, and feeds deterministic QoE, risk-scoring and LBO models. I ran product and operations, including the CRM and ERP workflows.</p>
+      </article>
+      <article class="pv-card pv-card--result">
+        <h2>On the sample data room</h2>
+        <p class="pv-big"><span>17</span> documents read in one pass</p>
+        <p class="pv-big"><span>14</span> ranked risk flags, with actions</p>
+      </article>
+    </section>
+
+    <aside class="pv-note">
+      <strong>About the demo.</strong> This is DealNexa's own React frontend, built from the product's code and running
+      in your browser in demo mode. Sign-in is skipped and a small fake backend answers the app's requests from saved
+      data, so nothing reaches a database or an AI model. The company is fictional: Ridgeline Roofing, from DealNexa's
+      sample data room of 17 documents. The diligence report was produced by running DealNexa's prompts and report
+      format over those documents with Claude, then saved. The LBO runs live through a port of DealNexa's engine.
+      Real organizations and people named in the sample documents are replaced with generic labels. Changes you make
+      reset when the page reloads.
+    </aside>
+
+    <section class="pv-demo" aria-labelledby="dn-demo-title">
+      <div class="pv-demo__head">
+        <h2 id="dn-demo-title">Use the app</h2>
+        <p>You're signed in as a demo analyst at a buyout firm reviewing Ridgeline Roofing. Start on the deal dashboard, with its live risk score and LBO, then jump to another screen or click around the app freely.</p>
+      </div>
+
+      <div class="dn-jump" role="group" aria-label="Jump to a screen">
+        <button class="pill pill--soft" type="button" data-view="dashboard" aria-pressed="true">dashboard</button>
+        <button class="pill pill--soft" type="button" data-view="ai-findings" aria-pressed="false">diligence report</button>
+        <button class="pill pill--soft" type="button" data-view="financials" aria-pressed="false">QoE &amp; LBO</button>
+        <button class="pill pill--soft" type="button" data-view="diligence" aria-pressed="false">diligence tracker</button>
+        <button class="pill pill--soft" type="button" data-view="library" aria-pressed="false">documents</button>
+        <button class="pill pill--soft" type="button" data-view="pipeline" aria-pressed="false">pipeline</button>
+      </div>
+
+      <div class="dn-window">
+        <div class="dn-window__bar">
+          <span class="dn-window__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="dn-window__title">DealNexa · demo workspace</span>
+          <a class="dn-window__open" id="dn-open" href="dealnexa-app/index.html#/dashboard" target="_blank" rel="noopener">open full screen ↗</a>
+        </div>
+        <iframe class="dn-window__frame" id="dn-frame" src="dealnexa-app/index.html#/dashboard" title="DealNexa app, demo mode" loading="lazy"></iframe>
+        <div class="dn-window__small">
+          <p>The app is built for a desktop screen.</p>
+          <a class="pill pill--wine" href="dealnexa-app/index.html#/dashboard" target="_blank" rel="noopener">open the app ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <p class="pv-back"><a href="experience.html">← back to experience</a></p>
+  </main>
+
+  <nav class="site-menu" id="site-menu" aria-label="Site menu" hidden>
+    <button class="pill site-menu__close" type="button">close.</button>
+    <ul class="site-menu__links">
+      <li><a href="index.html">home</a></li>
+      <li><a href="experience.html">experience</a></li>
+      <li><a href="pavind.html">pavind demo</a></li>
+      <li><a href="dealnexa.html" aria-current="page">dealnexa demo</a></li>
+      <li><a href="about.html">about</a></li>
+    </ul>
+    <p class="site-menu__contact">
+      <a href="mailto:azavattig@gmail.com">azavattig@gmail.com</a>
+      <a href="https://www.linkedin.com/in/alessandrozavatti" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/azavattig" target="_blank" rel="noopener">GitHub</a>
+      <a href="assets/AlessandroZavatti_Resume.pdf">Resume (PDF)</a>
+    </p>
+  </nav>
+
+  <script src="js/menu.js?v=35"></script>
+  <script src="js/dealnexa-window.js?v=36"></script>
+  <script src="js/pet/sprites.js?v=35"></script>
+  <script src="js/pet/surfaces.js?v=35"></script>
+  <script src="js/pet/pet.js?v=35"></script>
+</body>
+</html>

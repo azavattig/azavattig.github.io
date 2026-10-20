@@ -1,0 +1,122 @@
+[
+ {
+  "seed": 7,
+  "file": "day-7.json",
+  "optimizer": {
+   "total_km": 1858.6,
+   "vehicles_used": 12,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 0,
+   "total_route_hours": 106.3,
+   "overtime_hours": 6.2,
+   "unload_trips": 1
+  },
+  "baseline": {
+   "total_km": 2045.3,
+   "vehicles_used": 15,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 8,
+   "total_route_hours": 142.3,
+   "overtime_hours": 20.8,
+   "unload_trips": 3
+  }
+ },
+ {
+  "seed": 11,
+  "file": "day-11.json",
+  "optimizer": {
+   "total_km": 2003.8,
+   "vehicles_used": 14,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 0,
+   "total_route_hours": 107.5,
+   "overtime_hours": 3.5,
+   "unload_trips": 0
+  },
+  "baseline": {
+   "total_km": 2334.0,
+   "vehicles_used": 15,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 9,
+   "total_route_hours": 139.2,
+   "overtime_hours": 14.4,
+   "unload_trips": 2
+  }
+ },
+ {
+  "seed": 23,
+  "file": "day-23.json",
+  "optimizer": {
+   "total_km": 1902.3,
+   "vehicles_used": 13,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 0,
+   "total_route_hours": 101.2,
+   "overtime_hours": 4.0,
+   "unload_trips": 0
+  },
+  "baseline": {
+   "total_km": 2225.8,
+   "vehicles_used": 15,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 11,
+   "total_route_hours": 140.1,
+   "overtime_hours": 15.5,
+   "unload_trips": 2
+  }
+ },
+ {
+  "seed": 42,
+  "file": "day-42.json",
+  "optimizer": {
+   "total_km": 1885.0,
+   "vehicles_used": 14,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 0,
+   "total_route_hours": 111.3,
+   "overtime_hours": 7.8,
+   "unload_trips": 0
+  },
+  "baseline": {
+   "total_km": 2108.0,
+   "vehicles_used": 14,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 11,
+   "total_route_hours": 137.4,
+   "overtime_hours": 18.1,
+   "unload_trips": 2
+  }
+ },
+ {
+  "seed": 99,
+  "file": "day-99.json",
+  "optimizer": {
+   "total_km": 2090.5,
+   "vehicles_used": 13,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 7,
+   "total_route_hours": 110.7,
+   "overtime_hours": 15.4,
+   "unload_trips": 0
+  },
+  "baseline": {
+   "total_km": 2329.2,
+   "vehicles_used": 14,
+   "jobs_served": 44,
+   "jobs_unserved": 0,
+   "late_jobs": 10,
+   "total_route_hours": 128.8,
+   "overtime_hours": 20.9,
+   "unload_trips": 2
+  }
+ }
+]

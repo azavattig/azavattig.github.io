@@ -1,0 +1,668 @@
+{
+ "company": {
+  "name": "Ridgeline Roofing (fictional)",
+  "description": "Residential and commercial roofing contractor, Dallas–Fort Worth, Texas",
+  "note": "Fictional sample company from DealNexa's test data room. Real organizations and people named in the sample documents are replaced with generic labels."
+ },
+ "engine": {
+  "pipeline": [
+   "Parse 17 Word documents (DealNexa document parser)",
+   "Batch extraction: flags, financials, clauses",
+   "Synthesis into the DD report",
+   "QoE bridge",
+   "Risk scoring engine",
+   "LBO engine"
+  ],
+  "source_chars": 41104,
+  "batches": 1
+ },
+ "dd_report": {
+  "deal_stage": "Pre-LOI diligence",
+  "deal_type": "Buyout",
+  "reviewer": "Partner",
+  "status": "DRAFT — NOT FOR DISTRIBUTION",
+  "executive_summary_paragraphs": [
+   "Ridgeline Roofing is a residential and commercial roofing contractor in the Dallas–Fort Worth area, owned by two members (70% / 30%) and founded in 2009. FY2023 revenue was $11.83M (up from $8.44M in FY2021) with reported EBITDA of $1.80M (15.2% margin) and 24 W-2 employees, plus about $1.94M a year of subcontracted labor.",
+   "The review raised 14 flags: 1 critical, 4 high and 9 medium. The most serious are maintenance revenue booked at 10x the signed contract value, heavy dependence on one hail-event cluster with only five to six weeks of backlog, open worker-classification exposure, uninsured subcontractor crews, and warranty callbacks at two to four times the industry rate.",
+   "Several schedules do not reconcile with each other (job costing, receivables, debt and fleet), and parts of the data room appear copied from another engagement. Before an LOI, the buyer should tie revenue to contracts and cash, rebuild a weather-normalized QoE, and price in indemnities for classification and subcontractor injury exposure."
+  ],
+  "financial_snapshot": [
+   {
+    "metric": "FY2023 Revenue",
+    "value": "$11.83M"
+   },
+   {
+    "metric": "FY2023 EBITDA (Reported)",
+    "value": "$1.80M"
+   },
+   {
+    "metric": "EBITDA (Management-adjusted)",
+    "value": "$2.00M"
+   },
+   {
+    "metric": "EBITDA (Diligence-adjusted)",
+    "value": "$1.95M"
+   },
+   {
+    "metric": "Revenue CAGR FY2021–23",
+    "value": "18.4%"
+   },
+   {
+    "metric": "Gross Margin",
+    "value": "43.5%"
+   },
+   {
+    "metric": "Net Debt",
+    "value": "$0.37M"
+   },
+   {
+    "metric": "Signed Backlog",
+    "value": "$1.23M"
+   },
+   {
+    "metric": "Employees (W-2)",
+    "value": "24"
+   }
+  ],
+  "flags": [
+   {
+    "id": "F-01",
+    "severity": "CRITICAL",
+    "area": "Revenue – Maintenance Contract Integrity",
+    "section": "Financial Due Diligence",
+    "subsection": "Revenue Integrity",
+    "summary": "Revenue booked for the national-retailer maintenance contract is 10x the contract value.",
+    "detail": [
+     "The signed maintenance agreement for the retailer's Store #4812 sets an annual fee of $28,840, invoiced at $7,210 per quarter, starting March 1, 2023 (09_Commercial_Maintenance_Contract). The job list and the CRM summary both record $288,400 of FY2023 revenue from that customer (04_Revenue_Mix_Job_Costing, 17_Customer_List_CRM_Summary).",
+     "The commercial maintenance line on the income statement ($644,100) equals this $288,400 plus $355,700 from three other contracts. If the contract value is right, recurring maintenance revenue is overstated by up to $259,560. At the 57.4% margin reported for maintenance work, that is about $149,000 of EBITDA. The backlog schedule also calls the $644,100 'annualized recurring revenue' from three contracts, while the CRM lists four."
+    ],
+    "action_required": "Obtain FY2023 invoices and bank receipts for Store #4812 and the other maintenance contracts, and tie general-ledger maintenance revenue to signed agreements before LOI."
+   },
+   {
+    "id": "F-02",
+    "severity": "HIGH",
+    "area": "Revenue – Storm and Weather Dependence",
+    "section": "Financial Due Diligence",
+    "subsection": "Revenue Quality",
+    "summary": "A third of revenue is storm restoration, mostly from one hail cluster, with only five to six weeks of backlog.",
+    "detail": [
+     "Storm and insurance restoration was $4.0M, or 33.8% of FY2023 revenue, and more than 70% of it came from a single Dallas–Fort Worth hail-event cluster (17_Customer_List_CRM_Summary). FY2022 included about $1.8M of hail revenue that management says will not recur at that level (01_Income_Statement).",
+     "Signed backlog at December 31, 2023 is $1,228,000, about 10.4% of prior-year revenue, so forward visibility is roughly five to six weeks (12_Backlog). EBITDA margin already fell from 17.2% in FY2022 to 15.2% in FY2023 as storm revenue declined."
+    ],
+    "action_required": "Build weather-normalized revenue and EBITDA using storm revenue by event and year for 2019–2023, and price the deal off the normalized figure."
+   },
+   {
+    "id": "F-03",
+    "severity": "HIGH",
+    "area": "Human Capital – Worker Misclassification",
+    "section": "Human Capital Due Diligence",
+    "subsection": "Employment Compliance",
+    "summary": "Four storm canvassers are paid as contractors despite employee-like control, and a state inquiry is open.",
+    "detail": [
+     "The canvassers are commission-only 1099 workers who take direction from the Sales Manager, use company iPads and uniforms, and work only for the company (06_Employee_Roster). The Texas Workforce Commission sent an inquiry in October 2023 and has not ruled (15_Litigation_Legal_Matters).",
+     "Management estimates $28,000–$44,000 a year of back taxes if the workers are reclassified. In 2022 the company paid $8,400 to settle a former sub worker's wage claim 'to avoid IRS W-2 reclassification finding', which shows the issue has come up before."
+    ],
+    "action_required": "Get an employment-counsel opinion, add a special indemnity or escrow for pre-close periods, and reduce normalized EBITDA by the ongoing payroll-tax cost."
+   },
+   {
+    "id": "F-04",
+    "severity": "HIGH",
+    "area": "Operations – Uninsured Subcontractors",
+    "section": "Operational Due Diligence",
+    "subsection": "Subcontractor Risk",
+    "summary": "About $700,000 a year of subcontracted work runs through crews with missing or lapsed insurance.",
+    "detail": [
+     "The company paid $1,944,800 to subcontractors in FY2023 (06_Employee_Roster). The tear-off crew (Sub F, $244,800) is unregistered, has no certificate of insurance on file and an unverified taxpayer ID. The gutters crew (Sub E, $112,400) has had no valid coverage since April 2023. A shingle crew (Sub B, $344,800) uses its own sub-workers whose insurance was never checked.",
+     "This is already costing money: a worker from the uninsured tear-off crew was injured and filed a workers' compensation claim on the company's policy ($38,400 incurred, statutory-employer status disputed) (08_Insurance, 15_Litigation)."
+    ],
+    "action_required": "Run a full COI audit, require workers' compensation coverage from every sub before closing, and get a specific indemnity for pre-close injuries."
+   },
+   {
+    "id": "F-05",
+    "severity": "HIGH",
+    "area": "Operations – Warranty Callbacks",
+    "section": "Operational Due Diligence",
+    "subsection": "Quality and Warranty",
+    "summary": "Warranty callbacks run at 2.1% of revenue, two to four times the industry benchmark, and are rising.",
+    "detail": [
+     "Callback costs were $244,800 in FY2023 (2.07% of revenue) against a 0.5%–1.0% benchmark for well-run roofing firms, up from $118,400 in FY2021 and $188,400 in FY2022 (04_Revenue_Mix_Job_Costing, 01_Income_Statement). Storm work runs at about 4.1%.",
+     "The company gives a 5-year workmanship warranty (14_Sample_Residential_Contract) but carries no warranty reserve on the balance sheet (02_Balance_Sheet). A homeowner workmanship suit is in discovery, and a 2021 leak claim cost $44,800."
+    ],
+    "action_required": "Get a callback log by crew and job type, set a warranty reserve for the open 5-year tail, and include it in the QoE."
+   },
+   {
+    "id": "F-06",
+    "severity": "MEDIUM",
+    "area": "Financial – Job Costing Does Not Tie",
+    "section": "Financial Due Diligence",
+    "subsection": "Data Reconciliation",
+    "summary": "The job-costing schedule disagrees with the income statement on materials, other costs and gross profit.",
+    "detail": [
+     "Job costing shows gross profit of $5,079,102 (42.9%), while the income statement shows $5,143,000 (43.5%), a $63,898 gap. Materials differ by $172,198 ($3,447,198 vs $3,275,000) and other costs of revenue by $108,300 ($411,200 vs $519,500) (04_Revenue_Mix_Job_Costing, 01_Income_Statement)."
+    ],
+    "action_required": "Rebuild FY2023 job costing from the QuickBooks general ledger before relying on margin by service line."
+   },
+   {
+    "id": "F-07",
+    "severity": "MEDIUM",
+    "area": "Financial – Balance Sheet Inconsistencies",
+    "section": "Financial Due Diligence",
+    "subsection": "Balance Sheet Integrity",
+    "summary": "Several balance-sheet items conflict with the supporting schedules.",
+    "detail": [
+     "Receivables labelled 'net' ($1,244,800) equal the gross aging total even though management reports a $112,400 reserve (02_Balance_Sheet, 05_AR_Aging). The aging includes $490,400 of insurance-carrier claims, and the balance sheet shows a separate $244,800 insurance proceeds receivable, which may be counted twice.",
+     "The SBA loan is shown at its original $128,400 although the cash-flow statement records $48,000 of repayments in FY2023. The fleet schedule (book value $344,800, loans $193,400) does not match the balance sheet (net vehicles $531,800, vehicle loans $333,000). Total assets exceed liabilities plus equity by $800."
+    ],
+    "action_required": "Request a proof of cash, lender statements for all debt, and a fixed-asset register that ties to the general ledger."
+   },
+   {
+    "id": "F-08",
+    "severity": "MEDIUM",
+    "area": "Working Capital – Collections and Bad Debt",
+    "section": "Financial Due Diligence",
+    "subsection": "Working Capital",
+    "summary": "Bad debt has more than doubled in two years and several receivables are in dispute.",
+    "detail": [
+     "Bad debt rose from $44,800 (FY2021) to $88,400 (FY2022) and $112,400 (FY2023), driven by failed supplement negotiations with insurance carriers (01_Income_Statement, 05_AR_Aging). An insurance carrier is disputing an $88,400 supplement in appraisal, and a school district is withholding $63,600 of retainage and punch-list payments (15_Litigation).",
+     "The retainage figures do not agree with each other: 5% retainage on the $412,400 school job would be $20,620, not the $44,800 claimed, and the receivable aging shows $188,400 outstanding for that customer."
+    ],
+    "action_required": "Analyze collections by carrier and customer, and set a working-capital peg that excludes disputed balances."
+   },
+   {
+    "id": "F-09",
+    "severity": "MEDIUM",
+    "area": "Financial – Workers' Comp Experience Rate",
+    "section": "Financial Due Diligence",
+    "subsection": "Insurance Cost",
+    "summary": "The workers' comp experience rate rose from 0.88 to 1.14 in two years, with two open claims.",
+    "detail": [
+     "The experience modification rate went from 0.88 (2021) to 0.96 (2022) to 1.14 (2023), above the industry target of 1.0, driven by an installer's ladder fall ($112,400 incurred, open) and the sub-crew laceration ($38,400, open) (08_Insurance, 07_Licenses). Two of eight W-2 installers lack OSHA 10-hour training."
+    ],
+    "action_required": "Get current loss runs and a renewal quote, and model the higher premium in normalized EBITDA."
+   },
+   {
+    "id": "F-10",
+    "severity": "MEDIUM",
+    "area": "Governance – Member Agreements",
+    "section": "Governance & Ownership Due Diligence",
+    "subsection": "Ownership",
+    "summary": "No buy-sell, non-compete or deadlock terms between the two members, and a sale needs both to agree.",
+    "detail": [
+     "The operating agreement requires unanimous consent for a change of control and has no buy-sell agreement, member non-competes or deadlock mechanism (10_Corporate_Org_Documents). The 30% member runs sales and is paid $248,000, so customer relationships may leave with that member."
+    ],
+    "action_required": "Make signed non-competes and employment agreements from both members a closing condition, and consider rollover equity or an earn-out for the sales lead."
+   },
+   {
+    "id": "F-11",
+    "severity": "MEDIUM",
+    "area": "Real Estate – Lease and Owner's Yard",
+    "section": "Legal & Contractual Due Diligence",
+    "subsection": "Real Estate",
+    "summary": "The office lease ends in 2024, and equipment is stored free on the owner's private land.",
+    "detail": [
+     "The office lease expires December 31, 2024 with one 2-year option, and the landlord must consent to a change of control (16_Office_Lease). Trailers and materials are kept on the owner's personal 4-acre lot with no lease or payment, so the business has an unrecorded rent cost that a buyer will have to replace.",
+     "The company completed a job in Rockwall in September 2023 but only applied for the Rockwall registration in October 2023 (07_Licenses, 04_Revenue_Mix_Job_Costing)."
+    ],
+    "action_required": "Secure landlord consent and a renewal, put a market-rate yard lease in place, and add the cost to normalized EBITDA."
+   },
+   {
+    "id": "F-12",
+    "severity": "MEDIUM",
+    "area": "Legal – Assignment of Benefits Clauses",
+    "section": "Legal & Contractual Due Diligence",
+    "subsection": "Customer Contracts",
+    "summary": "Storm contracts rely on assignment-of-benefits clauses that Texas law limits.",
+    "detail": [
+     "The residential contract makes the homeowner irrevocably assign insurance proceeds to the company and charges 18% interest on past-due balances (14_Sample_Residential_Contract). The document itself notes that Texas Insurance Code 542A limits these assignments in some residential cases, which affects how storm receivables are collected."
+    ],
+    "action_required": "Have Texas counsel review the contract template and the collectability of open storm receivables."
+   },
+   {
+    "id": "F-13",
+    "severity": "MEDIUM",
+    "area": "Financial – Normalization Adjustments",
+    "section": "Financial Due Diligence",
+    "subsection": "Quality of Earnings",
+    "summary": "Management's $2.0M adjusted EBITDA relies on add-backs that are only partly supported.",
+    "detail": [
+     "Management adds back $152,000 of owner pay (owner salary $312,000 vs a $160,000 market general manager) and $48,200 of owner personal expenses (01_Income_Statement). A general manager is already on payroll at $112,000, so replacing the owner may add cost rather than swap it. No mileage logs exist for the three owner vehicles, and the fleet schedule itself estimates personal use at only $24,000–$36,000 a year (13_Vehicle_Fleet).",
+     "Distributions of $1.4M took substantially all FY2023 earnings (03_Cash_Flow)."
+    ],
+    "action_required": "Commission a QoE that tests each add-back against payroll records and mileage logs."
+   },
+   {
+    "id": "F-14",
+    "severity": "MEDIUM",
+    "area": "Data Room – Document Hygiene",
+    "section": "Governance & Ownership Due Diligence",
+    "subsection": "Data Integrity",
+    "summary": "Some documents look copied from other engagements or are out of date.",
+    "detail": [
+     "The customer summary compares the company to 'the aerospace company', text that belongs to another deal (17_Customer_List_CRM_Summary). The insurance summary is headed 'Policy Year 2023–2024' but every policy period ends December 31, 2023, so current coverage is not shown (08_Insurance)."
+    ],
+    "action_required": "Ask for source exports straight from the systems and current insurance binders."
+   }
+  ],
+  "next_steps": [
+   {
+    "severity": "CRITICAL",
+    "category": "Revenue integrity",
+    "items": [
+     "Tie maintenance revenue to signed contracts, invoices and bank receipts (national retailer and three other contracts)."
+    ]
+   },
+   {
+    "severity": "HIGH",
+    "category": "Quality of earnings",
+    "items": [
+     "Build weather-normalized revenue and EBITDA from storm revenue by event and year.",
+     "Set a warranty reserve for the 5-year workmanship tail and include it in the QoE.",
+     "Deduct reclassified canvasser payroll tax from normalized EBITDA."
+    ]
+   },
+   {
+    "severity": "HIGH",
+    "category": "Risk transfer",
+    "items": [
+     "COI audit of all subcontractors; workers' comp required before closing.",
+     "Special indemnity or escrow for worker classification and pre-close injuries."
+    ]
+   },
+   {
+    "severity": "MEDIUM",
+    "category": "Closing conditions",
+    "items": [
+     "Non-competes and employment agreements from both members.",
+     "Landlord consent, lease renewal and a market-rate yard lease.",
+     "Proof of cash, lender statements and a tied fixed-asset register."
+    ]
+   }
+  ],
+  "documents_reviewed": [
+   {
+    "category": "Financial statements",
+    "document": "01_Income_Statement_FY2021_2023.docx"
+   },
+   {
+    "category": "Financial statements",
+    "document": "02_Balance_Sheet_Dec2023.docx"
+   },
+   {
+    "category": "Financial statements",
+    "document": "03_Cash_Flow_Statement_FY2023.docx"
+   },
+   {
+    "category": "Financial statements",
+    "document": "04_Revenue_Mix_Job_Costing_FY2023.docx"
+   },
+   {
+    "category": "Working capital",
+    "document": "05_AR_Aging_December_2023.docx"
+   },
+   {
+    "category": "Human capital",
+    "document": "06_Employee_Roster_FY2023.docx"
+   },
+   {
+    "category": "Legal and compliance",
+    "document": "07_Licenses_Certifications.docx"
+   },
+   {
+    "category": "Insurance",
+    "document": "08_Insurance_Certificates_Summary.docx"
+   },
+   {
+    "category": "Customer contracts",
+    "document": "09_Commercial_Maintenance_Contract_National_Retailer.docx"
+   },
+   {
+    "category": "Governance",
+    "document": "10_Corporate_Org_Documents.docx"
+   },
+   {
+    "category": "Tax",
+    "document": "11_Tax_Summary_Form1065_FY2021_2023.docx"
+   },
+   {
+    "category": "Commercial",
+    "document": "12_Backlog_Signed_Contracts_Q4_2023.docx"
+   },
+   {
+    "category": "Fixed assets",
+    "document": "13_Vehicle_Fleet_Schedule.docx"
+   },
+   {
+    "category": "Customer contracts",
+    "document": "14_Sample_Residential_Roofing_Contract.docx"
+   },
+   {
+    "category": "Legal and compliance",
+    "document": "15_Litigation_Legal_Matters.docx"
+   },
+   {
+    "category": "Real estate",
+    "document": "16_Office_Lease_Agreement.docx"
+   },
+   {
+    "category": "Commercial",
+    "document": "17_Customer_List_CRM_Summary.docx"
+   }
+  ]
+ },
+ "detected_clauses": {
+  "indemnification": {
+   "detected": false,
+   "risk": null,
+   "confidence": null,
+   "snippets": []
+  },
+  "liability_caps": {
+   "detected": false,
+   "risk": null,
+   "confidence": null,
+   "snippets": []
+  },
+  "change_of_control": {
+   "detected": true,
+   "risk": "Med",
+   "confidence": 0.95,
+   "snippets": [
+    "A sale of 50%+ of membership interests or all/substantially all assets requires unanimous member consent (10_Corporate_Org_Documents)",
+    "Landlord consent required for assignment or transfer of control (16_Office_Lease)"
+   ]
+  },
+  "assignment": {
+   "detected": true,
+   "risk": "Med",
+   "confidence": 0.9,
+   "snippets": [
+    "Homeowner hereby assigns to Contractor all rights to receive payment of insurance proceeds ... This Assignment is irrevocable upon execution. (14_Sample_Residential_Contract)"
+   ]
+  },
+  "termination_asymmetry": {
+   "detected": true,
+   "risk": "Low",
+   "confidence": 0.8,
+   "snippets": [
+    "Either party may terminate for convenience upon 60 days written notice. Client may terminate for cause ... upon 10 days notice (09_Commercial_Maintenance_Contract)"
+   ]
+  },
+  "unilateral_pricing": {
+   "detected": false,
+   "risk": null,
+   "confidence": null,
+   "snippets": []
+  },
+  "audit_rights": {
+   "detected": false,
+   "risk": null,
+   "confidence": null,
+   "snippets": []
+  },
+  "injunctive_relief": {
+   "detected": false,
+   "risk": null,
+   "confidence": null,
+   "snippets": []
+  },
+  "auto_renewals": {
+   "detected": true,
+   "risk": "Low",
+   "confidence": 0.95,
+   "snippets": [
+    "Automatically renews for successive one-year periods unless either party provides 60 days written notice of non-renewal (09_Commercial_Maintenance_Contract)"
+   ]
+  },
+  "mfn": {
+   "detected": false,
+   "risk": null,
+   "confidence": null,
+   "snippets": []
+  }
+ },
+ "qoe": {
+  "reported_ebitda": 1801900,
+  "management": [
+   {
+    "label": "Owner pay above market GM salary",
+    "amount": 152000,
+    "source": "01_Income_Statement"
+   },
+   {
+    "label": "Owner vehicle and personal expenses",
+    "amount": 48200,
+    "source": "01_Income_Statement"
+   }
+  ],
+  "diligence": [
+   {
+    "label": "Canvasser payroll tax if reclassified (midpoint of $28K–$44K)",
+    "amount": -36000,
+    "source": "06_Employee_Roster"
+   },
+   {
+    "label": "Personal-use add-back cut to documented estimate ($30K midpoint vs $48.2K)",
+    "amount": -18200,
+    "source": "13_Vehicle_Fleet_Schedule"
+   }
+  ],
+  "pending": [
+   {
+    "label": "Maintenance revenue overstatement, if confirmed ($259,560 at 57.4% margin)",
+    "amount": -148987,
+    "source": "09 vs 04 / 17"
+   },
+   {
+    "label": "Warranty reserve for the 5-year workmanship tail",
+    "amount": null,
+    "source": "04, 14"
+   },
+   {
+    "label": "Market rent for the owner's equipment yard",
+    "amount": null,
+    "source": "16_Office_Lease"
+   },
+   {
+    "label": "Higher workers' comp premium at a 1.14 experience rate",
+    "amount": null,
+    "source": "08_Insurance"
+   }
+  ]
+ },
+ "scoring_metrics": {
+  "revenue_cagr": {
+   "value": 18.4,
+   "basis": "FY2021 $8.44M to FY2023 $11.83M"
+  },
+  "gross_margin": {
+   "value": 43.5,
+   "basis": "FY2023 income statement"
+  },
+  "ebitda_margin": {
+   "value": 15.2,
+   "basis": "FY2023 reported EBITDA / revenue"
+  },
+  "top_customer_pct": {
+   "value": 3.5,
+   "basis": "largest named customer, 17_Customer_List"
+  },
+  "revenue_under_dispute_pct": {
+   "value": 1.3,
+   "basis": "$152,000 disputed (carrier appraisal + school retainage) / revenue"
+  },
+  "runway_months": {
+   "value": 24,
+   "basis": "profitable, positive operating cash flow"
+  },
+  "cash_decline_pct": {
+   "value": 0,
+   "basis": "cash rose from $480,200 to $488,200"
+  },
+  "operating_cash_flow_positive": {
+   "value": true,
+   "basis": "$1,432,600 from operations"
+  },
+  "active_disputes": {
+   "value": 4,
+   "basis": "carrier appraisal, school retainage, homeowner suit, disputed WC claim"
+  },
+  "contract_inconsistencies": {
+   "value": 2,
+   "basis": "maintenance contract vs revenue; retainage figures"
+  },
+  "active_litigation": {
+   "value": 1,
+   "basis": "homeowner workmanship suit in discovery"
+  },
+  "compliance_flags": {
+   "value": 1,
+   "basis": "open state inquiry on worker classification"
+  },
+  "margin_trend": {
+   "value": "compressing",
+   "basis": "EBITDA margin 17.2% to 15.2% in FY2023"
+  },
+  "operating_leverage_declining": {
+   "value": true,
+   "basis": "opex +12.5% vs revenue +5.5% in FY2023"
+  },
+  "revenue_per_employee": {
+   "value": 492771,
+   "basis": "$11.83M / 24 W-2 employees"
+  },
+  "base_multiple": {
+   "value": 5.0,
+   "basis": "assumed entry multiple for a lower-middle-market roofing contractor"
+  }
+ },
+ "lbo": {
+  "inputs": {
+   "entry_ebitda": 1947900,
+   "entry_multiple": 5.0,
+   "exit_multiple": 5.0,
+   "hold_years": 5,
+   "leverage_x": 3.0,
+   "interest_rate": 0.09,
+   "ebitda_growth": 0.03,
+   "fees_pct": 0.02,
+   "min_cash": 300000,
+   "capex_pct": 0.13,
+   "nwc_change": 60000,
+   "tax_rate": 0.25,
+   "mandatory_amort_pct": 0.05,
+   "cash_sweep_pct": 0.75
+  },
+  "assumptions": [
+   "Entry EBITDA is the diligence-adjusted FY2023 figure; pending items are not deducted.",
+   "5.0x entry and exit multiple and 3.0x senior debt at 9% are assumptions for a lower-middle-market roofing contractor, not quotes.",
+   "Capex at 13% of EBITDA matches FY2023 ($233,200 of capex on $1.8M EBITDA).",
+   "Tax at 25% assumes the buyer holds the business in a taxable entity; the seller is a pass-through LLC today."
+  ],
+  "reference": {
+   "sources_uses": {
+    "ev_entry": 9739500.0,
+    "debt_entry": 5843700.0,
+    "fees": 194790.0,
+    "min_cash": 300000.0,
+    "equity_entry": 4390590.0,
+    "equity_needed": 4390590.0,
+    "physician_rollover_equity": 0.0,
+    "operating_lease_pv": 0.0,
+    "sources_total": 10234290.0,
+    "uses_total": 10234290.0
+   },
+   "entry": {
+    "ev": 9739500.0,
+    "ebitda": 1947900.0,
+    "multiple": 5.0,
+    "equity": 4390590.0,
+    "equity_needed": 4390590.0,
+    "physician_rollover_equity": 0.0,
+    "operating_lease_pv": 0.0
+   },
+   "exit": {
+    "ev": 11290749.846645,
+    "ebitda": 2258149.969329,
+    "multiple": 5.0,
+    "debt": 1955032.341761,
+    "equity": 9335717.504884
+   },
+   "periods": [
+    {
+     "year": 1,
+     "ebitda": 2006337.0,
+     "capex": 260823.81,
+     "interest": 525933.0,
+     "tax": 370101.0,
+     "fcf": 789479.19,
+     "debt_open": 5843700.0,
+     "mandatory_amort": 292185.0,
+     "cash_sweep": 372970.6425,
+     "debt_close": 5178544.3575
+    },
+    {
+     "year": 2,
+     "ebitda": 2066527.11,
+     "capex": 268648.5243,
+     "interest": 466068.992175,
+     "tax": 400114.529456,
+     "fcf": 871695.064069,
+     "debt_open": 5178544.3575,
+     "mandatory_amort": 258927.217875,
+     "cash_sweep": 459575.884645,
+     "debt_close": 4460041.25498
+    },
+    {
+     "year": 3,
+     "ebitda": 2128522.9233,
+     "capex": 276707.980029,
+     "interest": 401403.712948,
+     "tax": 431779.802588,
+     "fcf": 958631.427735,
+     "debt_open": 4460041.25498,
+     "mandatory_amort": 223002.062749,
+     "cash_sweep": 551722.023739,
+     "debt_close": 3685317.168491
+    },
+    {
+     "year": 4,
+     "ebitda": 2192378.610999,
+     "capex": 285009.21943,
+     "interest": 331678.545164,
+     "tax": 465175.016459,
+     "fcf": 1050515.829946,
+     "debt_open": 3685317.168491,
+     "mandatory_amort": 184265.858425,
+     "cash_sweep": 649687.478641,
+     "debt_close": 2851363.831425
+    },
+    {
+     "year": 5,
+     "ebitda": 2258149.969329,
+     "capex": 293559.496013,
+     "interest": 256622.744828,
+     "tax": 500381.806125,
+     "fcf": 1147585.922363,
+     "debt_open": 2851363.831425,
+     "mandatory_amort": 142568.191571,
+     "cash_sweep": 753763.298094,
+     "debt_close": 1955032.341761
+    }
+   ],
+   "returns": {
+    "moic": 2.126301,
+    "irr": 0.162853
+   },
+   "attribution": {
+    "ebitda_growth": 1551249.846645,
+    "multiple_expansion": 0.0,
+    "cross": 0.0,
+    "debt_paydown": 3888667.658239,
+    "fees_and_cash": -494790.0,
+    "physician_rollover": 0.0
+   },
+   "total_value_creation": 4945127.504884,
+   "reconciles": true
+  }
+ }
+}

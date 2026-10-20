@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alessandro Zavatti</title>
+  <meta name="description" content="Logistics and supply chain analyst in Miami. Route optimization and AI due-diligence tools.">
+  <link rel="canonical" href="https://azavattig.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Alessandro Zavatti">
+  <meta property="og:title" content="Alessandro Zavatti · Logistics &amp; operations analyst">
+  <meta property="og:description" content="Route optimization, freight and warehouse operations, and deal software, with two live demos.">
+  <meta property="og:url" content="https://azavattig.github.io/">
+  <meta property="og:image" content="https://azavattig.github.io/assets/og/og-main.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Alessandro Zavatti, logistics and operations analyst in Miami">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%237a1a2c%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2232%22 text-anchor=%22middle%22 fill=%22white%22%3Eaz.%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=35">
+</head>
+<body>
+  <main>
+    <section class="hero" id="hero" aria-label="Introduction">
+      <header class="hero__top">
+        <a class="logo" href="index.html">az.</a>
+        <div class="hero__nav">
+          <a class="pill pill--ghost hide-sm" href="assets/AlessandroZavatti_Resume.pdf" data-pet-say="one page. I checked.">resume</a>
+          <button class="pill pill--ghost menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">menu.</button>
+          <a class="pill" href="mailto:azavattig@gmail.com" data-pet-say="say hi!">get in touch.</a>
+        </div>
+      </header>
+
+      <h1 class="hero__name">
+        <span class="hero__line">Alessandro</span>
+        <span class="hero__line hero__line--right">Zavatti</span>
+      </h1>
+
+      <div class="hero__bottom">
+        <p class="hero__live">
+          <span class="muted">based in:</span> Miami
+          <span id="clock">--:--</span><span id="weather"></span>
+          <span class="hero__greet" id="greet" aria-live="off">Hola</span>
+        </p>
+        <p class="hero__pitch">Logistics and supply chain analyst. I build route-optimization and AI due-diligence tools.</p>
+      </div>
+
+      <p class="hero__hint" aria-hidden="true">grab the stuff on my desk</p>
+      <div class="desk" id="desk" aria-hidden="true"></div>
+    </section>
+
+    <section class="stops" aria-label="Projects">
+      <a class="card card--pavind" href="pavind.html">
+        <span class="card__stop">stop 01</span>
+        <h2>Pavind route optimizer</h2>
+        <p>Fleet routing with time windows and day/night shifts. 15% less distance in live operations.</p>
+        <span class="card__go">open the demo →</span>
+      </a>
+      <a class="card card--dealnexa" href="dealnexa.html">
+        <span class="card__stop">stop 02</span>
+        <h2>DealNexa diligence engine</h2>
+        <p>Claude-based document review that flags deal risks, with QofE and LBO outputs.</p>
+        <span class="card__go">open the demo →</span>
+      </a>
+      <a class="card card--wide" href="experience.html">
+        <span class="card__stop">all stops</span>
+        <h2>Experience</h2>
+        <p>Every role from the resume, with more context: Pavind, DealNexa, Outlier, TL Trading and G.P. ALPA.</p>
+        <span class="card__go">see the full route →</span>
+      </a>
+    </section>
+  </main>
+
+  <nav class="site-menu" id="site-menu" aria-label="Site menu" hidden>
+    <button class="pill site-menu__close" type="button">close.</button>
+    <ul class="site-menu__links">
+      <li><a href="index.html">home</a></li>
+      <li><a href="experience.html">experience</a></li>
+      <li><a href="pavind.html">pavind demo</a></li>
+      <li><a href="dealnexa.html">dealnexa demo</a></li>
+      <li><a href="about.html">about</a></li>
+    </ul>
+    <p class="site-menu__contact">
+      <a href="mailto:azavattig@gmail.com">azavattig@gmail.com</a>
+      <a href="https://www.linkedin.com/in/alessandrozavatti" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/azavattig" target="_blank" rel="noopener">GitHub</a>
+      <a href="assets/AlessandroZavatti_Resume.pdf">Resume (PDF)</a>
+    </p>
+  </nav>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.20.0/matter.min.js"></script>
+  <script src="js/desk-art.js?v=35"></script>
+  <script src="js/hero.js?v=35"></script>
+  <script src="js/pet/sprites.js?v=35"></script>
+  <script src="js/pet/surfaces.js?v=35"></script>
+  <script src="js/pet/pet.js?v=35"></script>
+  <script src="js/live-strip.js?v=35"></script>
+  <script src="js/menu.js?v=35"></script>
+</body>
+</html>

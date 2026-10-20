@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pavind Route Optimizer · Alessandro Zavatti</title>
+  <meta name="description" content="Case study and interactive demo: fleet route optimization with time windows and day/night shifts, built with Google OR-Tools.">
+  <link rel="canonical" href="https://azavattig.github.io/pavind.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Alessandro Zavatti">
+  <meta property="og:title" content="Pavind route optimizer · live demo">
+  <meta property="og:description" content="Plan a road-cleaning fleet's day on real roads, then break a truck down mid-route and watch it re-plan.">
+  <meta property="og:url" content="https://azavattig.github.io/pavind.html">
+  <meta property="og:image" content="https://azavattig.github.io/assets/og/og-pavind.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pavind route optimization demo">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%237a1a2c%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-family=%22sans-serif%22 font-weight=%22800%22 font-size=%2232%22 text-anchor=%22middle%22 fill=%22white%22%3Eaz.%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/style.css?v=35">
+</head>
+<body class="page-experience page-pavind">
+  <main>
+    <header class="topbar">
+      <a class="logo" href="index.html">az.</a>
+      <div class="hero__nav">
+        <button class="pill pill--soft menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">menu.</button>
+        <a class="pill pill--wine" href="mailto:azavattig@gmail.com" data-pet-say="say hi!">get in touch.</a>
+      </div>
+    </header>
+
+    <p class="pv-eyebrow">Route optimization · Pavind S.r.l. · Sulmona, Italy · 2025–2026</p>
+    <h1 class="page-title">Pavind</h1>
+
+    <section class="pv-story" aria-label="Case study">
+      <article class="pv-card">
+        <h2>The problem</h2>
+        <p>A municipal road-cleaning fleet in Sulmona works day and night shifts. Every job has a time window, every truck has a capacity, and each job needs a specific vehicle type. Each day someone has to decide which truck does which jobs, in what order, without missing a window or pushing a crew into overtime.</p>
+      </article>
+      <article class="pv-card">
+        <h2>What I built</h2>
+        <p>I modeled the day as a capacitated vehicle routing problem with time windows (CVRPTW) and solved it with Google OR-Tools, one model per shift. A forecasting layer (Prophet and LightGBM) estimated upcoming demand, and real day/night shift rules shaped the schedule.</p>
+      </article>
+      <article class="pv-card pv-card--result">
+        <h2>Result in live operations</h2>
+        <p class="pv-big"><span>15%</span> less route distance</p>
+        <p class="pv-big"><span>12%</span> fewer idle fleet hours</p>
+      </article>
+    </section>
+
+    <aside class="pv-note">
+      <strong>About the demo.</strong> The original system and its data are confidential. The demo below runs my
+      reconstruction of the solver on five synthetic days built to match the fleet's structure: 44 jobs, 14 vehicles,
+      real Abruzzo towns and motorway stretches, with distances and routes on real roads. Its numbers are modeled, not the live results above.
+    </aside>
+
+    <section class="pv-demo" aria-labelledby="demo-title">
+      <div class="pv-demo__head">
+        <h2 id="demo-title">Plan a service day</h2>
+        <p>Compare the optimizer with a nearest-neighbour dispatcher, where each truck simply takes the closest open job next. Both plans are scored by the same simulation. Then break a truck down mid-shift and see how the rest of the day gets re-planned.</p>
+      </div>
+
+      <details class="pv-assumptions">
+        <summary>What the model assumes</summary>
+        <ul>
+          <li><strong>Time on site</strong> comes from published ranges, not Pavind's records: skip pickup 15–30 min, suction 45–150 min (septic and sewer pumping runs 30 min to 2 h, plus jetting), sludge loading 20–50 min, and motorway sweeping by stretch length at 8–12 km/h, one carriageway per job.</li>
+          <li><strong>Breaks are random for every driver and day</strong>, the way crews really take them: 40% have coffee before the shift (10–30 min), 60% stop for coffee mid-morning (10–45 min), everyone takes lunch (30–120 min, starting 12:00–14:30), and night crews take one 20–60 min break. A 45-minute lunch also covers the EU rule of a 45-minute break after 4.5 h of driving.</li>
+          <li><strong>Unloading:</strong> a truck can drive back to the yard to tip its load (20–25 min) and keep working. The solver decides when the detour is worth it.</li>
+          <li><strong>Overtime</strong> of up to 2 hours is allowed, at a high cost, only when it is the only way to serve a job. Late finishes are allowed the same way.</li>
+          <li><strong>Roads:</strong> real road distances and routes from OpenStreetMap (via OSRM); trucks drive 25% slower than cars.</li>
+        </ul>
+      </details>
+
+      <div class="pv-controls" role="group" aria-label="Demo controls">
+        <div class="seg" role="radiogroup" aria-label="Day" id="day-picker"></div>
+        <div class="seg" role="radiogroup" aria-label="Plan" id="plan-picker">
+          <button type="button" role="radio" data-plan="optimizer" aria-checked="true">Optimizer</button>
+          <button type="button" role="radio" data-plan="baseline" aria-checked="false">Dispatcher baseline</button>
+        </div>
+        <div class="seg" role="radiogroup" aria-label="Shift" id="shift-picker">
+          <button type="button" role="radio" data-shift="day" aria-checked="true">Day shift</button>
+          <button type="button" role="radio" data-shift="night" aria-checked="false">Night shift</button>
+        </div>
+      </div>
+
+      <div class="pv-breakdown" role="group" aria-labelledby="bd-title">
+        <span class="pv-breakdown__title" id="bd-title">Simulate a breakdown</span>
+        <label class="pv-select">Truck <select id="bd-truck"></select></label>
+        <div class="seg" role="radiogroup" aria-label="Breakdown time" id="bd-time">
+          <button type="button" role="radio" data-time="600" aria-checked="true">10:00</button>
+          <button type="button" role="radio" data-time="780" aria-checked="false">13:00</button>
+        </div>
+        <button class="pill pill--wine" type="button" id="bd-run">break it down</button>
+        <button class="pill pill--soft" type="button" id="bd-reset" hidden>back to the original plan</button>
+      </div>
+      <p class="pv-report" id="bd-report" aria-live="polite" hidden></p>
+
+      <div class="pv-kpis" id="kpis" aria-live="polite"></div>
+
+      <div class="pv-map-wrap">
+        <div class="pv-map" id="map" role="img" aria-label="Map of the selected plan's routes"></div>
+        <ul class="pv-legend" id="legend" aria-label="Vehicle types"></ul>
+        <p class="pv-map__note">Routes follow real roads (OpenStreetMap, via OSRM). Trucks are assumed to drive 25% slower than cars.</p>
+      </div>
+
+      <div class="pv-charts">
+        <figure class="pv-chart">
+          <figcaption>Km per truck <span class="muted-text" id="km-caption"></span></figcaption>
+          <svg id="km-chart" class="pv-svg" role="img" aria-label="Kilometres driven by each truck"></svg>
+        </figure>
+        <figure class="pv-chart">
+          <figcaption>Shift timeline <span class="muted-text">jobs, breaks and unloading per truck</span></figcaption>
+          <ul class="pv-legend pv-legend--inline pv-legend--timeline" aria-label="Timeline key">
+            <li><span class="swatch swatch--break" aria-hidden="true"></span>Driver break</li>
+            <li><span class="swatch swatch--unload" aria-hidden="true"></span>Unloading at the yard</li>
+          </ul>
+          <svg id="timeline" class="pv-svg" role="img" aria-label="Timeline of each truck's jobs"></svg>
+        </figure>
+      </div>
+    </section>
+
+    <section class="pv-demo pv-days" aria-labelledby="days-title">
+      <div class="pv-demo__head">
+        <h2 id="days-title">Across all five days</h2>
+        <p id="days-summary"></p>
+      </div>
+      <figure class="pv-chart">
+        <ul class="pv-legend pv-legend--inline" aria-label="Plans">
+          <li><span class="swatch" style="--swatch: var(--viz-optimizer)"></span>Optimizer</li>
+          <li><span class="swatch" style="--swatch: var(--viz-baseline)"></span>Dispatcher baseline</li>
+        </ul>
+        <svg id="days-chart" class="pv-svg" role="img" aria-label="Total kilometres per day, optimizer versus baseline"></svg>
+      </figure>
+      <details class="pv-table">
+        <summary>Show as a table</summary>
+        <div class="pv-table__scroll"><table id="days-table"></table></div>
+      </details>
+    </section>
+
+    <p class="pv-back"><a href="experience.html">← back to experience</a></p>
+  </main>
+
+  <div class="pv-tooltip" id="tooltip" role="tooltip" hidden></div>
+
+  <nav class="site-menu" id="site-menu" aria-label="Site menu" hidden>
+    <button class="pill site-menu__close" type="button">close.</button>
+    <ul class="site-menu__links">
+      <li><a href="index.html">home</a></li>
+      <li><a href="experience.html">experience</a></li>
+      <li><a href="pavind.html" aria-current="page">pavind demo</a></li>
+      <li><a href="dealnexa.html">dealnexa demo</a></li>
+      <li><a href="about.html">about</a></li>
+    </ul>
+    <p class="site-menu__contact">
+      <a href="mailto:azavattig@gmail.com">azavattig@gmail.com</a>
+      <a href="https://www.linkedin.com/in/alessandrozavatti" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/azavattig" target="_blank" rel="noopener">GitHub</a>
+      <a href="assets/AlessandroZavatti_Resume.pdf">Resume (PDF)</a>
+    </p>
+  </nav>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="js/menu.js?v=35"></script>
+  <script src="js/pavind.js?v=35"></script>
+  <script src="js/pet/sprites.js?v=35"></script>
+  <script src="js/pet/surfaces.js?v=35"></script>
+  <script src="js/pet/pet.js?v=35"></script>
+</body>
+</html>
