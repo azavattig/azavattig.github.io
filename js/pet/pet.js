@@ -13,9 +13,13 @@
   const MAX_JUMP_ACROSS = 380;
   const NAP_AFTER_MS = 20000;
   const PET_HOLD_MS = 1600;
-  const CHASE_TRIGGER_SPEED = 1.0;   // cursor px per ms
-  const CHASE_RANGE = 260;
-  const CHASE_COOLDOWN_MS = 7000;
+  const CHASE_TRIGGER_SPEED = 0.6;   // cursor px per ms
+  const CHASE_RANGE = 420;
+  const CHASE_RANGE_Y = 240;
+  const CHASE_MS = 5000;
+  const CHASE_COOLDOWN_MS = 3000;
+  const WATCH_RECENT_MS = 4000;      // a sitting cat looks at a cursor moved this recently
+  const WATCH_DEAD_ZONE = 24;        // px either side of the cat where it doesn't turn
   const FAST_SCROLL_SPEED = 3;       // px per ms
   const DRAG_START_PX = 6;
   const OFFSCREEN_MARGIN = 150;
@@ -218,6 +222,13 @@
     return true;
   }
 
+  // A sitting cat turns to face a mouse cursor that moved recently, without leaving its spot.
+  function watchPointer(now) {
+    if (now - pointer.time > WATCH_RECENT_MS) return;
+    const dx = pointer.x - x;
+    if (Math.abs(dx) > WATCH_DEAD_ZONE) direction = Math.sign(dx);
+  }
+
   function updateGrounded(dt, now) {
     surface = Surfaces.refresh(surface);
     if (!surface) {
@@ -265,6 +276,9 @@
         if (now - lastPetAt > PET_HOLD_MS) setState("sit", randomBetween(800, 1800));
         break;
       case "sit":
+        watchPointer(now);
+        if (now > stateEndsAt) chooseNext(now);
+        break;
       case "nap":
       case "alert":
       case "grip":
@@ -398,11 +412,11 @@
     const elapsed = Math.max(1, now - pointer.time);
     pointer = { x: docX, y: docY, time: now, speed: Math.hypot(docX - pointer.x, docY - pointer.y) / elapsed };
 
-    const isNearby = Math.abs(docX - x) < CHASE_RANGE && Math.abs(docY - (y - height / 2)) < 160;
+    const isNearby = Math.abs(docX - x) < CHASE_RANGE && Math.abs(docY - (y - height / 2)) < CHASE_RANGE_Y;
     const isFree = state === "sit" || state === "walk";
     if (!prefersReducedMotion && isFree && isNearby && pointer.speed > CHASE_TRIGGER_SPEED && now > chaseCooldownUntil) {
       chaseCooldownUntil = now + CHASE_COOLDOWN_MS;
-      setState("chase", 2500);
+      setState("chase", CHASE_MS);
     }
   });
 
