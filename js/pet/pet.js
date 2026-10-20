@@ -18,8 +18,6 @@
   const CHASE_RANGE_Y = 240;
   const CHASE_MS = 5000;
   const CHASE_COOLDOWN_MS = 3000;
-  const WATCH_RECENT_MS = 4000;      // a sitting cat looks at a cursor moved this recently
-  const WATCH_DEAD_ZONE = 24;        // px either side of the cat where it doesn't turn
   const FAST_SCROLL_SPEED = 3;       // px per ms
   const DRAG_START_PX = 6;
   const OFFSCREEN_MARGIN = 150;
@@ -222,13 +220,6 @@
     return true;
   }
 
-  // A sitting cat turns to face a mouse cursor that moved recently, without leaving its spot.
-  function watchPointer(now) {
-    if (now - pointer.time > WATCH_RECENT_MS) return;
-    const dx = pointer.x - x;
-    if (Math.abs(dx) > WATCH_DEAD_ZONE) direction = Math.sign(dx);
-  }
-
   function updateGrounded(dt, now) {
     surface = Surfaces.refresh(surface);
     if (!surface) {
@@ -276,9 +267,6 @@
         if (now - lastPetAt > PET_HOLD_MS) setState("sit", randomBetween(800, 1800));
         break;
       case "sit":
-        watchPointer(now);
-        if (now > stateEndsAt) chooseNext(now);
-        break;
       case "nap":
       case "alert":
       case "grip":
